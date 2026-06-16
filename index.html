@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GU-Q Daily Hotel Room Rates Catalogue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Georgetown University in Qatar</p>
+      <h1>Daily Hotel Room Rates Catalogue</h1>
+      <div class="hero-office">
+        <p><b>Procurement and Payables (P2P)</b></p>
+        <p><b>Office of Finance</b></p>
+      </div>
+      <p>This catalogue displays daily hotel contract rates for Georgetown University in Qatar. Each rate card is traceable back to its source row in the <b>Catalogue_View</b> Google Sheet created from the Excel workbook.</p>
+      <div class="hero-actions">
+        <button id="refreshBtn" type="button">Refresh data</button>
+        <button id="printBtn" type="button" class="secondary">Print catalogue</button>
+        <button id="resetBtn" type="button" class="secondary">Reset filters</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel">
+      <div class="toolbar">
+        <div class="field">
+          <label for="searchInput">Search</label>
+          <input id="searchInput" type="search" placeholder="Search hotel, area, room, season, amenities, policy, contract...">
+        </div>
+        <div class="field">
+          <label for="areaFilter">Area</label>
+          <select id="areaFilter"></select>
+        </div>
+        <div class="field">
+          <label for="categoryFilter">Category</label>
+          <select id="categoryFilter"></select>
+        </div>
+        <div class="field">
+          <label for="bedroomFilter">Room / bedrooms</label>
+          <select id="bedroomFilter"></select>
+        </div>
+        <div class="field">
+          <label for="petFilter">Breakfast</label>
+          <select id="petFilter">
+            <option value="">Any breakfast status</option>
+            <option value="yes">Breakfast included</option>
+            <option value="no">Breakfast not included / not listed</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sortSelect">Sort</label>
+          <select id="sortSelect">
+            <option value="name">Name A-Z</option>
+            <option value="price-low">Daily rate: low to high</option>
+            <option value="price-high">Daily rate: high to low</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><strong id="resultCount">0 units</strong><span>Visible units</span></div>
+        <div class="stat"><strong id="propertyCount">0</strong><span>Properties</span></div>
+        <div class="stat"><strong id="minRate">—</strong><span>Lowest daily rate</span></div>
+        <div class="stat"><strong id="petCount">0</strong><span>Breakfast-included units</span></div>
+      </div>
+    </section>
+
+    <div class="content-head">
+      <div>
+        <h2>Catalogue</h2>
+        <div class="small-note" id="updatedAt">Loading data...</div>
+      </div>
+      <div class="small-note">One hotel card shows all approved daily room units. Long-stay/monthly rows are intentionally excluded.</div>
+    </div>
+
+    <section id="catalogueGrid" class="grid"></section>
+
+    <section id="compareDrawer" class="compare-drawer">
+      <div id="compareContent"></div>
+    </section>
+
+    <p class="footer-note">
+      Note: daily contract rates, blackout periods, supplements, taxes, and availability must be confirmed with the hotel before booking. Use the displayed Record ID and Sheet Row for internal audit.
+    </p>
+  </main>
+
+  <div id="detailModal" class="modal">
+    <div id="modalBody"></div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="sample-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
