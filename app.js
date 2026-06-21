@@ -497,7 +497,6 @@ function renderCards(groups) {
           <div class="meta">
             <span class="pill">${escapeHtml(breakfastLabel(group))}</span>
             <span class="pill">${escapeHtml(rateRange(group))}</span>
-            ${firstTrace.sourceContract ? `<span class="pill trace-chip">${escapeHtml(firstTrace.sourceContract)}</span>` : ""}
           </div>
 
           ${amenityChipsHtml(group.amenities, 4)}
